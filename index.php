@@ -1,43 +1,35 @@
 <?php
-// Creating variables
-$servername = "localhost";
-$username = "root";
-$password = "secret";
-
-// Create connection
-$conn = new mysqli($servername,$username,$password);
-
-// Check connection
-if ($conn->connect_error) {
-  die("No worky Jerky ".$conn->connect_error);
-} else {
-$success = "It Worked ";
-}
-
+require_once("connect.php");
+require_once("function-new.php");
 $thisPagename = $_GET["page"] ?? "Home";
-
 ?>
-<html>
-  <head>
-  </head>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
   <body>
-    <div>
-      <?php 
-      $sql = "SELECT pagename FROM test.content";
-      $result = $conn->query($sql);
-      while ($row = $result->fetch_assoc())
-        echo "<li><a href='index.php?page=" . $row['pagename'] . "'>" . $row['pagename'] . "</a>";
+    <nav>
+      <?php
+      makeNav($conn);
       ?>
-    </div>
-    <div>
-      <?php 
-        $sql = "SELECT * FROM test.content WHERE pagename = '$thisPagename'";
-        $result = $conn->query($sql);
-        $row = $result->fetch_assoc();
-            echo "<p>" . $row['pagetitle'] . "</p>";
-            echo "<p>" . $row['pagename'] . "</p>";
-            echo $row['pagecontent'];
-      ?>
-    </div>
+    </nav>
+    <section>
+      <div>
+        <?php
+        makeContent($conn, $thisPagename);
+
+        // echo "test" . $thisPagename;
+
+        // if ($thisPagename == 'CONTACT') {
+        //   include(contact-form.php);
+        // }
+        ?>
+      </div>
+    </section>
   </body>
 </html>
