@@ -1,7 +1,16 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 require_once("connect.php");
 require_once("function-new.php");
-$thisPagename = $_GET["page"] ?? "Home";
+$uriSegments = explode("/", parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
+
+$thisPagename = array_pop($uriSegments);
+if ($thisPagename == ""){
+    $thisPagename = "index";
+}
+// $thisPagename = $_GET["page"] ?? "Home";
 ?>
 
 <!DOCTYPE html>
@@ -21,8 +30,8 @@ $thisPagename = $_GET["page"] ?? "Home";
     <section>
       <div>
         <?php
-        // makeContent($conn, $thisPagename);
-
+        makeContent($conn, $thisPagename);
+        // echo ($thisPagename);
         // echo "test" . $thisPagename;
 
         // if ($thisPagename == 'CONTACT') {
