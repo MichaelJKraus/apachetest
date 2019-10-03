@@ -1,12 +1,17 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+session_start();
+
 require_once("connect.php");
 require_once("function-new.php");
+$loggedIn = $_SESSION['loggedin'];
+
+/* This pulls the text from after the first / in the url and sets it to an array */
 $uriSegments = explode("/", parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
 
+/* This pulls the last item out of the uri array */
 $thisPagename = array_pop($uriSegments);
+
+// This sets the pagename if none is provided in the URL
 if ($thisPagename == ""){
     $thisPagename = "index";
 }
@@ -24,7 +29,8 @@ if ($thisPagename == ""){
   <body>
     <nav>
       <?php
-      makeNav($conn);
+      makeNav($conn, $loggedIn);
+      echo "<p>" . $loggedIn . "</p>";
       ?>
     </nav>
     <section>
