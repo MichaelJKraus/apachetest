@@ -1,6 +1,6 @@
 <?php
 // $loggedIn = "Not logged in";
-$_SESSION["loggedin"] = "YOU ARE NOT LOGGED IN";
+$_SESSION["loggedin"] = "logged in";
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
