@@ -6,7 +6,7 @@ function makeNav($conn, $loggedIn){
     while ( $row = $result->fetch_assoc() ) {
         echo "<li><a href='" . $row['pagename'] . "'>" .$row['pagetitle']. "</a></li>";
     }
-    if ($loggedIn == "YOU ARE NOT LOGGED IN") {
+    if ($loggedIn == "not logged in") {
         echo "<li><a href='login.php'>Log In</a></li>";
     } else { 
         echo "<li><a href='logout.php'>Log Out</a></li>";
