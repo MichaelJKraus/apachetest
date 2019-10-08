@@ -1,9 +1,8 @@
 <?php
 session_start();
-
 require_once("connect.php");
 require_once("function-new.php");
-$loggedIn = $_SESSION['loggedin'];
+$loggedIn = $_SESSION['loggedin'] ?? "not logged in";
 
 /* This pulls the text from after the first / in the url and sets it to an array */
 $uriSegments = explode("/", parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
@@ -12,7 +11,7 @@ $uriSegments = explode("/", parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
 $thisPagename = array_pop($uriSegments);
 
 // This sets the pagename if none is provided in the URL
-if ($thisPagename == ""){
+if ($thisPagename == "") {
     $thisPagename = "index";
 }
 // $thisPagename = $_GET["page"] ?? "Home";
