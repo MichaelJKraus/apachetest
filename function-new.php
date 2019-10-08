@@ -12,7 +12,7 @@ function makeNav($conn, $loggedIn) {
     } 
     else { 
         echo "<li><a href='logout.php'>Log Out</a></li>";
-        echo "<p>Your real name is:" . $_SESSION['realname'] . "</a></p>";
+        echo "<p>Your real name is: " . $_SESSION['realname'] . "</a></p>";
     } echo"</ul>";
 } 
 // End of makeNav function
